@@ -5,6 +5,7 @@ import Blog from './pages/Blog'
 import Edit from './pages/Edit'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Create from './pages/Create'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register/>,
+  },
+  {
+    path: "/create",
+    element: <Create/>,
   },
 ]);
 
