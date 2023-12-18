@@ -68,6 +68,7 @@ const Login = () => {
             Login
           </button>
           Don't have an account? <Link to="/register">
+            Sign Up
             {/* <button
           type="button"
           onClick={() => (window.location.href = '/register')}
