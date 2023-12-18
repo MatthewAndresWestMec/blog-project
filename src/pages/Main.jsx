@@ -32,7 +32,7 @@ const Main = () => {
 
       <div className="blog-list">
         {blogs.map((blog) => (
-          <Link to={`/blog/${blog.id}`} key={blog.id}>
+          <Link to={`/blog/${blog.id}`} key={blog.id} className="link-no-decoration">
             <div className="blog-card">
               <img src={blog.picture} alt={blog.blogTitle} />
               <div className="card-content">

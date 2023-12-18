@@ -98,3 +98,7 @@ button:hover {
 .link:hover {
     color: #ccc;
 }
+.link-no-decoration {
+    text-decoration: none;
+    color: inherit;
+}
