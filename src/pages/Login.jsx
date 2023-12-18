@@ -67,13 +67,15 @@ const Login = () => {
           <button type="button" onClick={handleLogin} className="button">
             Login
           </button>
-          Don't have an account? <Link to="/register"><button
+          Don't have an account? <Link to="/register">
+            {/* <button
           type="button"
           onClick={() => (window.location.href = '/register')}
           className="button"
         >
           Sign Up
-        </button></Link>
+        </button> */}
+        </Link>
           
         </form>
         
