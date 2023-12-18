@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import '../../src/pages/pseudo-style/navbar.css'
 const Navbar = () => {
   const handleLogout = () => {
     // Implement your logout logic here
@@ -14,12 +14,24 @@ const Navbar = () => {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/main">Main</Link>
-        </li>
-        <li>
-          <button onClick={handleLogout}>Logout</button>
-        </li>
+        <div className="left-section">
+          <li>
+            <h1><Link to="/main" className="logo-link">Bloggo</Link></h1>
+          </li>
+        </div>
+        <div className="right-section">
+          <li>
+            <Link to="/main"><button>Main</button></Link>
+          </li>
+          <li>
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+          <li>
+            <Link to="/create">
+              <button>Create Blog</button>
+            </Link>
+          </li>
+        </div>
       </ul>
     </nav>
   );

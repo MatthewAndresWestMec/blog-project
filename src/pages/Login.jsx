@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './pseudo-style/login.css';
+import {Link} from 'react-router-dom'
+
 const Login = () => {
   const [credentials, setCredentials] = useState({
     email: '',
@@ -20,8 +23,8 @@ const Login = () => {
       console.log('User logged in successfully:', response.data);
       if (response.data.success) {
         alert('Login Successful!');
-        sessionStorage.setItem('USERDATA', credentials.email)
-        sessionStorage.setItem('authenticated', 'true')
+        sessionStorage.setItem('USERDATA', credentials.email);
+        sessionStorage.setItem('authenticated', 'true');
         window.location.href = '/main';
       } else {
         alert('Login failed. Please check your email and password.');
@@ -33,35 +36,51 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
-      </form>
-      <button type="button" onClick={() => window.location.href = '/register'}>Sign Up</button>
-      <p>As an example you can use:<br></br> Email: matthew.a@example.com <br></br> Password: yourpassword</p>
+    <div className="container">
+      <div className="loginCard">
+        <h2 className="heading">Login to Bloggo</h2>
+        <form className="form">
+          <label className="label">
+            Email:
+            <br />
+            <input
+              type="email"
+              name="email"
+              value={credentials.email}
+              onChange={handleChange}
+              className="input"
+            />
+          </label>
+          <br />
+          <label className="label">
+            Password:
+             <br />
+            <input
+              type="password"
+              name="password"
+              value={credentials.password}
+              onChange={handleChange}
+              className="input"
+            />
+          </label>
+          <br />
+          <button type="button" onClick={handleLogin} className="button">
+            Login
+          </button>
+          Don't have an account? <Link to="/register"><button
+          type="button"
+          onClick={() => (window.location.href = '/register')}
+          className="button"
+        >
+          Sign Up
+        </button></Link>
+          
+        </form>
+        
+        <p className="info">
+          As an example, you can use:<br /> Email: matthew.a@example.com <br /> Password: yourpassword
+        </p>
+      </div>
     </div>
   );
 };

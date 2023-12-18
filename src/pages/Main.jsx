@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
-
-// import '../../styles/css/main.css'; 
 import axios from 'axios';
+import './pseudo-style/main.css';
 
 const Main = () => {
   const [blogs, setBlogs] = useState([]);
@@ -27,28 +26,24 @@ const Main = () => {
 
   return (
     <>
-          <Navbar/>
+      <Navbar />
+      <Authenticated />
+      {/* <Authenticated/> */}
 
-    <Authenticated/>
-    {/* <Authenticated/> */}
-    <Link to="/create">
-        <button>Create New Blog</button>
-      </Link>
-      
-    <div className="blog-list">
-      {blogs.map((blog) => (
-        <Link to={`/blog/${blog.id}`} key={blog.id}>
-          <div className="blog-card">
-            <img src={blog.picture} alt={blog.blogTitle} />
-            <div className="card-content">
-              <h2>{blog.blogTitle}</h2>
-              <p>By {blog.name}</p>
-              <p>{blog.shortDescription}</p>
+      <div className="blog-list">
+        {blogs.map((blog) => (
+          <Link to={`/blog/${blog.id}`} key={blog.id}>
+            <div className="blog-card">
+              <img src={blog.picture} alt={blog.blogTitle} />
+              <div className="card-content">
+                <h2>{blog.blogTitle}</h2>
+                <p>By {blog.name}</p>
+                <p>{blog.shortDescription}</p>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
     </>
   );
 };

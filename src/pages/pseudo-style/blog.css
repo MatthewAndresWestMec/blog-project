@@ -1,0 +1,68 @@
+/* pseudo-style/blog.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+
+}
+
+.navbar {
+    background-color: #000;
+    padding: 10px;
+    color: #fff;
+}
+
+.blog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    /* Grow to fill the available space */
+    overflow: auto;
+    /* Enable vertical scrolling if needed */
+}
+
+.blog-box {
+    background-color: #fff;
+    color: #000;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    /* Adjust the max-width as needed */
+    margin: 20px;
+}
+
+.blog-title,
+.blog-author,
+.blog-content,
+.permission-message {
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.blog-image {
+    width: 100%;
+    max-height: 300px;
+    /* Adjust the max-height as needed */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.edit-button,
+.delete-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.permission-message {
+    font-style: italic;
+}

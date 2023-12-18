@@ -1,0 +1,64 @@
+/* pseudo-style/create.css */
+
+.create-container {
+    background-color: #fff;
+    /* White background */
+    color: #000;
+    /* Black text color */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-box {
+    background-color: #000;
+    /* Black background for the form box */
+    color: #fff;
+    /* White text color */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Light box shadow */
+    width: 400px;
+    /* Adjust the width as needed */
+}
+
+.create-title {
+    font-size: 5vh;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.create-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ddd;
+    /* Light text color */
+}
+
+.create-input,
+.create-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #000;
+    /* Black border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #000;
+    /* Black text color */
+}
+
+.create-button {
+    background-color: #000;
+    /* Black button color */
+    color: #fff;
+    /* White text color */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add additional styling as needed */
