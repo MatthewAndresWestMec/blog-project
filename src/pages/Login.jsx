@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/login.css';
 import {Link} from 'react-router-dom'
+import { useNavigate  } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials((prevCredentials) => ({
@@ -25,7 +27,7 @@ const Login = () => {
         alert('Login Successful!');
         sessionStorage.setItem('USERDATA', credentials.email);
         sessionStorage.setItem('authenticated', 'true');
-        window.location.href = '/main';
+    navigate('/main');
       } else {
         alert('Login failed. Please check your email and password.');
       }
@@ -68,14 +70,13 @@ const Login = () => {
             Login
           </button>
           Don't have an account? <Link to="/register">
-            Sign Up
-            {/* <button
+            <button
           type="button"
-          onClick={() => (window.location.href = '/register')}
+          onClick={() => (navigate('/register'))}
           className="button"
         >
           Sign Up
-        </button> */}
+        </button>
         </Link>
           
         </form>

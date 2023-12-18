@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import '../css/register.css';
-import {Link} from 'react-router-dom'
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -26,7 +28,6 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      // Validation
       const { first_name, last_name, email, password, password2 } = formData;
       const validationErrors = [];
 
@@ -47,19 +48,10 @@ const Register = () => {
         return;
       }
 
-      // Check if email is already registered
-      // const userResponse = await axios.get(`http://localhost:5000/api/users/${email}`);
-      // if (userResponse.data.user) {
-      //   validationErrors.push({ msg: 'This email has already been registered' });
-      //   setErrors(validationErrors);
-      //   return;
-      // }
-
-      // Register user
       const response = await axios.post('http://localhost:5000/api/users/register', formData);
       console.log('Registration successful:', response.data);
 
-      window.location.href = '/';
+      navigate('/');
     } catch (error) {
       console.error('Registration failed:', error.response.data);
       setErrors(error.response.data.errors || [{ msg: 'Registration failed' }]);
@@ -80,6 +72,7 @@ const Register = () => {
 
       <form onSubmit={handleSubmit} className="form">
         <h2 className="heading">Create Bloggo Account</h2>
+
         <label className="label">
           First Name:
           <br />
@@ -148,15 +141,14 @@ const Register = () => {
         <button type="submit" className="button">
           Create Account
         </button>
-            <br />
-            Have an account? <Link to="/"><button
-          type="button"
-          onClick={() => (window.location.href = '/')}
-          className="button"
-        >
-          Login
-        </button></Link>
-        
+
+        <br />
+        Have an account? 
+        <Link to="/">
+          <button type="button" className="button">
+            Login
+          </button>
+        </Link>
       </form>
     </div>
   );

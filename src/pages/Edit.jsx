@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
 import '../css/edit.css'; // Import your CSS file
 
 const Edit = () => {
+  const navigate = useNavigate(); // Use useNavigate
   const { id } = useParams();
   const [blog, setBlog] = useState({
     blogTitle: '',
@@ -41,72 +42,74 @@ const Edit = () => {
     try {
       await axios.put(`http://localhost:5000/api/blogs/${id}`, blog);
       console.log('Blog updated successfully!');
-      window.location.href = `/blog/${id}`;
+      navigate(`/blog/${id}`); // Use navigate instead of window.location.href
     } catch (error) {
       console.error('Error updating blog:', error);
       // Handle error
     }
   };
 
-  return (<> <Navbar />
-    <div className="edit-container">
-     
-      <Authenticated />
-      <div className='edit-box'>
-        <h2 className="edit-title">Edit Blog</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="blogTitle" className="edit-label">
-            Blog Title
-          </label>
-          <input
-            type="text"
-            id="blogTitle"
-            name="blogTitle"
-            value={blog.blogTitle}
-            onChange={handleChange}
-            className="edit-input"
-          />
+  return (
+    <>
+      <Navbar />
+      <div className="edit-container">
+        <Authenticated />
+        <div className='edit-box'>
+          <h2 className="edit-title">Edit Blog</h2>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="blogTitle" className="edit-label">
+              Blog Title
+            </label>
+            <input
+              type="text"
+              id="blogTitle"
+              name="blogTitle"
+              value={blog.blogTitle}
+              onChange={handleChange}
+              className="edit-input"
+            />
 
-          <label htmlFor="picture" className="edit-label">
-            Picture
-          </label>
-          <input
-            type="text"
-            id="picture"
-            name="picture"
-            value={blog.picture}
-            onChange={handleChange}
-            className="edit-input"
-          />
+            <label htmlFor="picture" className="edit-label">
+              Picture
+            </label>
+            <input
+              type="text"
+              id="picture"
+              name="picture"
+              value={blog.picture}
+              onChange={handleChange}
+              className="edit-input"
+            />
 
-          <label htmlFor="shortDescription" className="edit-label">
-            Short Description
-          </label>
-          <textarea
-            id="shortDescription"
-            name="shortDescription"
-            value={blog.shortDescription}
-            onChange={handleChange}
-            className="edit-textarea"
-          ></textarea>
+            <label htmlFor="shortDescription" className="edit-label">
+              Short Description
+            </label>
+            <textarea
+              id="shortDescription"
+              name="shortDescription"
+              value={blog.shortDescription}
+              onChange={handleChange}
+              className="edit-textarea"
+            ></textarea>
 
-          <label htmlFor="blogContent" className="edit-label">
-            Blog Content
-          </label>
-          <textarea
-            id="blogContent"
-            name="blogContent"
-            value={blog.blogContent}
-            onChange={handleChange}
-            className="edit-textarea"
-          ></textarea>
+            <label htmlFor="blogContent" className="edit-label">
+              Blog Content
+            </label>
+            <textarea
+              id="blogContent"
+              name="blogContent"
+              value={blog.blogContent}
+              onChange={handleChange}
+              className="edit-textarea"
+            ></textarea>
 
-          <button type="submit" className="edit-button">
-            Update Blog
-          </button>
-        </form>
+            <button type="submit" className="edit-button">
+              Update Blog
+            </button>
+          </form>
+        </div>
       </div>
-    </div></>
+    </>
   );
 };
 

@@ -1,13 +1,14 @@
 // Blog.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';  // Import useNavigate
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
 import '../css/blog.css';
 
 const Blog = () => {
   const { id } = useParams();
+  const navigate = useNavigate();  // Use useNavigate
   const [blog, setBlog] = useState({
     name: '',
     blogTitle: '',
@@ -33,7 +34,7 @@ const Blog = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:5000/api/blogs/${id}`);
-      window.location.href = '/main';
+      navigate('/main');  // Use navigate instead of window.location.href
     } catch (error) {
       console.error('Error deleting blog:', error);
     }
@@ -65,7 +66,6 @@ const Blog = () => {
           )}
         </div>
       </div>
-     
     </>
   );
 };
