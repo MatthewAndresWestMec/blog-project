@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './main.scss'; // Import your SCSS file
+// import '../../styles/css/main.css'; 
 import axios from 'axios';
 
 const Main = () => {
@@ -9,8 +9,11 @@ const Main = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('/api/blogs');
-        setBlogs(response.data);
+        const response = await axios.get('http://localhost:5000/api/blogs');
+        setBlogs(response.data.data); // Access the 'data' property
+        if (!Array.isArray(response.data.data)) {
+          console.error('Data is not an array:', response.data.data);
+        }
       } catch (error) {
         console.error('Error fetching blogs:', error);
       }
@@ -20,6 +23,11 @@ const Main = () => {
   }, []);
 
   return (
+    <>
+    <Link to="/create">
+        <button>Create New Blog</button>
+      </Link>
+      
     <div className="blog-list">
       {blogs.map((blog) => (
         <Link to={`/blog/${blog.id}`} key={blog.id}>
@@ -34,6 +42,7 @@ const Main = () => {
         </Link>
       ))}
     </div>
+    </>
   );
 };
 

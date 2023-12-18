@@ -4,11 +4,23 @@ const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
-// const peopleController = require('./routes/user-controller')
+const session = require('express-session');
+const userController = require('./routes/user-route');
 const blogController = require('./routes/blog-route');
 const connectDB = require('./db/connect');
 const port = 5000;
-
+const passport = require('passport');
+// app.use(
+//   //change
+//   session({
+//     secret: process.env.REACT_APP_SESSION_SECRET,
+//     resave: true,
+//     saveUnitialized: false,
+//   })
+// );
+// Initialize Passport
+app.use(passport.initialize());
+// app.use(passport.session()); //change
 //Middleware
 
 app.use(morgan('tiny'));
@@ -26,14 +38,14 @@ app.get('/', (req, res) => {
 //routes
 // app.use('/people',peopleController)
 app.use('/api/blogs', blogController);
-
+app.use('/api/users', userController);
 const initServer = async () => {
   try {
     await connectDB(
-      'mongodb+srv://matthew:1234@matthewcluster.chtewfp.mongodb.net/Blog-Project'
+      'mongodb+srv://mandre361:1234@matthewcluster.chtewfp.mongodb.net/Blog-Project'
     );
-    app.listen(5000, () => {
-      console.log('listening on port 5000');
+    app.listen(port, () => {
+      console.log('listening on port ${port}');
     });
   } catch (error) {
     console.log(error);
