@@ -46,15 +46,15 @@ const Register = () => {
       }
 
       // Check if email is already registered
-      const userResponse = await axios.get(`/api/users/${email}`);
-      if (userResponse.data.user) {
-        validationErrors.push({ msg: 'This email has already been registered' });
-        setErrors(validationErrors);
-        return;
-      }
+      // const userResponse = await axios.get(`http://localhost:5000/api/users/${email}`);
+      // if (userResponse.data.user) {
+      //   validationErrors.push({ msg: 'This email has already been registered' });
+      //   setErrors(validationErrors);
+      //   return;
+      // }
 
       // Register user
-      const response = await axios.post('/api/users/register', formData);
+      const response = await axios.post('http://localhost:5000/api/users/register', formData);
       console.log('Registration successful:', response.data);
       
       window.location.href = '/';

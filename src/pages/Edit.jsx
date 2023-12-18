@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Authenticated from '../components/Authenticated';
+import Navbar from '../components/Navbar';
 
 const Edit = () => {
   const { id } = useParams();
@@ -47,6 +49,10 @@ const Edit = () => {
 
   return (
     <div>
+            <Navbar/>
+
+          <Authenticated/>
+
       <h2>Edit Blog</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="blogTitle">Blog Title</label>

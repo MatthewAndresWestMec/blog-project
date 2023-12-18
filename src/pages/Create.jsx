@@ -1,19 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Authenticated from '../components/Authenticated';
+import Navbar from '../components/Navbar';
 
 const Create = () => {
-  // Assuming 'user' is available in the component
-  const { name, userEmail } = {"_id":{"$oid":"657b7d6c9b88d52d71c02e64"},"first_name":"John","last_name":"Doe","email":"john.doe@example.com","password":"hashedpassword","date":{"$date":{"$numberLong":"1702591850391"}},"editRights":false,"__v":{"$numberInt":"0"}};
-
   const [formData, setFormData] = useState({
     blogTitle: '',
     picture: '',
     shortDescription: '',
     blogContent: '',
-    // Uncomment and provide default values if 'user' is not available
-    name: name || 'defaultName',
-    userEmail: userEmail || 'defaultEmail',
+    name: '',  // Removed the default value
+    userEmail: '',
   });
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const userdata = sessionStorage.getItem('USERDATA');
+        const email = userdata;
+
+        // Set user data in the form
+        setFormData((prevData) => ({
+          ...prevData,
+          userEmail: email,
+        }));
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    getUserData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,17 +44,12 @@ const Create = () => {
     e.preventDefault();
 
     try {
-      // Uncomment the lines below if you want to include user data
-      formData.name = name || 'defaultName';
-      formData.userEmail = userEmail || 'defaultEmail';
-
       // Check if data is being sent correctly
       console.log('Form Data:', formData);
 
       const response = await axios.post('http://localhost:5000/api/blogs', formData);
       console.log('Blog created successfully:', response.data);
 
-      // Redirect to the main blog list or any other desired path
       window.location.href = '/main';
     } catch (error) {
       console.error('Error creating blog:', error.response.data);
@@ -45,9 +57,23 @@ const Create = () => {
   };
 
   return (
-     <div>
+    <div>
+      <Navbar/>
+      <Authenticated />
+
       <h2>Create New Blog</h2>
       <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
         <label>
           Blog Title:
           <input
@@ -90,10 +116,6 @@ const Create = () => {
             required
           />
         </label>
-
-        {/* Uncomment the lines below if you want to include user data */}
-        {/* <p>Name: {name}</p>
-        <p>Email: {userEmail}</p> */}
 
         <button type="submit">Create Blog</button>
       </form>

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Authenticated from '../components/Authenticated';
+import Navbar from '../components/Navbar';
+
 // import '../../styles/css/main.css'; 
 import axios from 'axios';
 
@@ -24,6 +27,10 @@ const Main = () => {
 
   return (
     <>
+          <Navbar/>
+
+    <Authenticated/>
+    {/* <Authenticated/> */}
     <Link to="/create">
         <button>Create New Blog</button>
       </Link>

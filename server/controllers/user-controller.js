@@ -66,23 +66,31 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = (req, res, next) => {
-  console.log('login successful');
   passport.authenticate('local', (err, user, info) => {
     if (err) {
-      return next(err);
+      console.error('Authentication error:', err);
+      return res
+        .status(500)
+        .json({ success: false, msg: 'Internal Server Error' });
     }
-
+    console.log(user);
     if (!user) {
       // Authentication failed
-      return res.redirect('/');
+      console.log('Authentication failed');
+      return res
+        .status(401)
+        .json({ success: false, msg: 'Authentication failed' });
     }
 
     // Authentication successful
     req.logIn(user, (err) => {
       if (err) {
-        return next(err);
+        console.error('Login error:', err);
+        return res
+          .status(500)
+          .json({ success: false, msg: 'Internal Server Error' });
       }
-      return res.redirect('/main');
+      return res.status(200).json({ success: true, msg: 'Login successful' });
     });
   })(req, res, next);
 };

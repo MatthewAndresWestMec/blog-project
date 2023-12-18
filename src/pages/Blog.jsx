@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
+import Authenticated from '../components/Authenticated';
+import Navbar from '../components/Navbar';
+
 const Blog = () => {
   const { id } = useParams(); // Access the ID from the URL params
   const [blog, setBlog] = useState({
@@ -39,19 +42,26 @@ const Blog = () => {
     }
   };
 
+  const userdata = sessionStorage.getItem('USERDATA');
+  const email = userdata;
+  if(email === blog.userEmail){
+    var show = true
+  }
+
+
   return (
     <div>
+            <Navbar/>
+
+      <Authenticated/>
       <p>{blog.blogTitle}</p>
       <p>By {blog.name}</p>
       <p>{blog.picture}</p>
       <div dangerouslySetInnerHTML={{ __html: blog.blogContent }} />
-      {/* dont mind this :)*/}
-
-      <Link to={`/edit/${id}`}>
+    
+    {show ? <><Link to={`/edit/${id}`}>
         <button>Edit</button>
-      </Link>
-
-      <button onClick={handleDelete}>Delete</button>
+      </Link> <button onClick={handleDelete}>Delete</button></> : <p>You do not have permission to edit / delete blog</p>}
     </div>
   );
 };
