@@ -5,6 +5,8 @@
 ## Server/Backend Figma + Planning
 [Figma](https://www.figma.com/file/gl42bSFJH08rX2A3h3IB4v/Machakoya-Andres's-team-library?type=design&node-id=0%3A1&mode=design&t=0yz3DERgauD2ihyr-1) 
 
+## Netlify Link
+[Domain Link (Netlify)](https://elegant-souffle-6e4cfe.netlify.app/)
 ## Available Scripts
 
 In the project directory, you can run:
