@@ -17,7 +17,7 @@ const Navbar = () => {
       <div class="header">
         <Link to="/main" className="navbar-link">Bloggo</Link>
           <Link to="/create" className='navbar-link'>Create Blog</Link>
-         <a onClick={handleLogout} className='navbar-link'>Logout</a>
+         <a onClick={handleLogout} className='navbar-link' href = '/' >Logout</a>
       </div>
       <h1 class="logo">Bloggo</h1>
     </>
