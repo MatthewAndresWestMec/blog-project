@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './pseudo-style/register.css';
+import '../css/register.css';
 import {Link} from 'react-router-dom'
 
 const Register = () => {

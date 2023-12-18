@@ -1,10 +1,10 @@
-// Blog.js
+// Blog.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
-import './pseudo-style/blog.css';
+import '../css/blog.css';
 
 const Blog = () => {
   const { id } = useParams();
@@ -48,7 +48,7 @@ const Blog = () => {
       <Navbar />
       <Authenticated />
       <div className="blog-container">
-        <div className='blog-box'>
+        <div className="blog-box">
           <h1 className="blog-title">{blog.blogTitle}</h1>
           <p className="blog-author">By {blog.name}</p>
           <img className="blog-image" src={blog.picture} alt={blog.blogTitle} />
@@ -65,6 +65,7 @@ const Blog = () => {
           )}
         </div>
       </div>
+     
     </>
   );
 };

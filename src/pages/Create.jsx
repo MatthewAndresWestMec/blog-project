@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
-import './pseudo-style/create.css';
+import '../css/create.css';
 
 const Create = () => {
   const [formData, setFormData] = useState({

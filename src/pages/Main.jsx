@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
-import './pseudo-style/main.css';
+import '../css/main.css';
 
 const Main = () => {
   const [blogs, setBlogs] = useState([]);
@@ -45,6 +45,7 @@ const Main = () => {
         ))}
       </div>
     </>
+    
   );
 };
 

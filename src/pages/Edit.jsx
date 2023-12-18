@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Authenticated from '../components/Authenticated';
 import Navbar from '../components/Navbar';
-import './pseudo-style/edit.css'; // Import your CSS file
+import '../css/edit.css'; // Import your CSS file
 
 const Edit = () => {
   const { id } = useParams();
